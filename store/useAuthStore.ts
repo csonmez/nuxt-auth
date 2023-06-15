@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import cookie from 'js-cookie'
 
 export const useAuthStore = defineStore('auth', {
-    state: () => ({ user: null, isLoggedIn: false, token: '' }),
+    state: () => ({ user: null, isLoggedIn: false }),
     getters: {
         getUser: (state) => state.user,
         getIsLoggedIn: (state) => state.isLoggedIn,
@@ -19,7 +19,6 @@ export const useAuthStore = defineStore('auth', {
                 method: 'post',
                 body: { email, password },
             })
-            this.token = `Bearer ${response.token}`
             cookie.set('token', `Bearer ${response.token}`)
         },
         async getMe() {
